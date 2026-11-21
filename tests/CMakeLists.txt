@@ -1,0 +1,4 @@
+add_executable(essential_tests test_greeting.cpp test_todo_list.cpp)
+target_link_libraries(essential_tests PRIVATE essential::essential Catch2::Catch2WithMain)
+essential_enable_warnings(essential_tests)
+catch_discover_tests(essential_tests)

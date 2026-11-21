@@ -1,0 +1,5 @@
+add_executable(essential_cli main.cpp)
+set_target_properties(essential_cli PROPERTIES OUTPUT_NAME essential)
+target_link_libraries(essential_cli PRIVATE essential::essential)
+essential_enable_warnings(essential_cli)
+install(TARGETS essential_cli RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

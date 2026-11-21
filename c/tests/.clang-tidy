@@ -1,0 +1,6 @@
+# The CHECK macro uses do/while on purpose.
+InheritParentConfig: true
+Checks: >
+  -cppcoreguidelines-avoid-do-while,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cert-err33-c

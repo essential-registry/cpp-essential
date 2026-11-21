@@ -1,0 +1,9 @@
+/build
+/vcpkg_installed
+.cache/
+.env
+.DS_Store
+*.profraw
+*.profdata
+coverage/
+compile_commands.json

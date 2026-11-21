@@ -1,0 +1,13 @@
+# Catch2 macros trip several checks that are noise for test code.
+InheritParentConfig: true
+Checks: >
+  -cppcoreguidelines-avoid-do-while,
+  -cert-err58-cpp,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -readability-function-cognitive-complexity,
+  -bugprone-chained-comparison,
+  -misc-use-anonymous-namespace,
+  -bugprone-throwing-static-initialization,
+  -clang-analyzer-optin.core.EnumCastOutOfRange,
+  -clang-diagnostic-c2y-extensions,
+  -cppcoreguidelines-owning-memory
