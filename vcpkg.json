@@ -2,5 +2,16 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "essential",
   "version-string": "0.1.0",
-  "dependencies": [{ "name": "catch2", "host": false }]
+  "description": "C++23 and C17 starter with the essentials: CMake presets, sanitizers, clang-tidy, Catch2.",
+  "homepage": "https://github.com/essential-registry/cpp-essential",
+  "maintainers": [
+    "Vaibhav Gosavi (https://vgseven.com)"
+  ],
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "catch2",
+      "host": false
+    }
+  ]
 }

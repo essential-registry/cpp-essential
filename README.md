@@ -91,6 +91,10 @@ Full details: [`docs/01-architecture.md`](docs/01-architecture.md).
 3. Add dependencies to `vcpkg.json` and use the `*-vcpkg` presets with `VCPKG_ROOT` set.
 4. Keep one language if you do not need both (see above).
 
+## Author
+
+Built and maintained by [Vaibhav Gosavi](https://vgseven.com). Part of [Essential](https://github.com/essential-registry).
+
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). Copyright (c) 2025-2026 Vaibhav Gosavi (https://vgseven.com).

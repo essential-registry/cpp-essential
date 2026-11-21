@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.28)
 
+# Author: Vaibhav Gosavi (https://vgseven.com). License: MIT.
+
 project(essential
   VERSION 0.1.0
   DESCRIPTION "C++23 and C17 starter with the essentials"
+  HOMEPAGE_URL "https://github.com/essential-registry/cpp-essential"
   LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
