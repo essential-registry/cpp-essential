@@ -9,7 +9,7 @@ namespace essential {
 enum class ErrorCode : std::uint8_t { InvalidInput, NotFound };
 
 struct Error {
-  ErrorCode code;
+  ErrorCode code = ErrorCode::InvalidInput;
   std::string message;
 
   friend bool operator==(const Error&, const Error&) = default;

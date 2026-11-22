@@ -1,4 +1,5 @@
-#include <print>
+#include <format>
+#include <iostream>
 #include <string_view>
 
 #include "essential/greeting.hpp"
@@ -6,13 +7,21 @@
 
 namespace {
 
+// std::print needs GCC 14; iostream + std::format builds on GCC 13 and newer, and on Clang.
+void out(std::string_view text) {
+  std::cout << text << '\n';
+}
+void err(std::string_view text) {
+  std::cerr << text << '\n';
+}
+
 int run_greet(std::string_view name) {
   const auto greeting = essential::greet(name, "C++ Essential");
   if (!greeting) {
-    std::println(stderr, "error: {}", greeting.error().message);
+    err(std::format("error: {}", greeting.error().message));
     return 1;
   }
-  std::println("{}", *greeting);
+  out(*greeting);
   return 0;
 }
 
@@ -23,7 +32,7 @@ int run_todo() {
     return 1;
   }
   for (const auto& todo : list.items()) {
-    std::println("[{}] {} {}", todo.done ? 'x' : ' ', todo.id, todo.title);
+    out(std::format("[{}] {} {}", todo.done ? 'x' : ' ', todo.id, todo.title));
   }
   return 0;
 }
@@ -39,7 +48,7 @@ int dispatch(int argc, const char* const* argv) {
   if (argc == 2 && std::string_view{argv[1]} == "todo") {
     return run_todo();
   }
-  std::println(stderr, "usage: essential greet <name> | essential todo");
+  err("usage: essential greet <name> | essential todo");
   return 2;
 }
 

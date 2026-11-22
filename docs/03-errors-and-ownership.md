@@ -6,7 +6,7 @@ Functions that can fail return `std::expected<T, essential::Error>`; `Error` car
 
 ```cpp
 const auto greeting = essential::greet(name, "App");
-if (!greeting) { std::println(stderr, "{}", greeting.error().message); return 1; }
+if (!greeting) { std::cerr << greeting.error().message << "\n"; return 1; }
 ```
 
 Exceptions are for truly exceptional failures (out of memory). `main` catches everything so none escape (`bugprone-exception-escape` enforces this).
