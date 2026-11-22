@@ -11,9 +11,9 @@
 namespace essential {
 
 struct Todo {
-  std::uint32_t id;
+  std::uint32_t id = 0;
   std::string title;
-  bool done;
+  bool done = false;
 };
 
 /// An in-memory todo list. Owns its items; copy and move work as for any value type.

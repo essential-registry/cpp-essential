@@ -20,7 +20,7 @@ Part of [Essential](https://github.com/essential-registry): starter templates wi
 ## Requirements
 
 - [CMake](https://cmake.org) 3.28 or newer and [Ninja](https://ninja-build.org)
-- A C++23 compiler: GCC 13 or newer, or a recent Clang (developed with Apple clang 21). `std::expected` and `std::format` are required; `std::print` is not.
+- A C++23 compiler: GCC 13 or newer, or a recent Clang (developed with Apple clang 21). `std::expected` and `std::format` are required; `std::print` is not. CI builds with GCC and with Clang.
 - `clang-format` (required by the gate); `clang-tidy` and `cppcheck` recommended (skipped locally when missing, required in CI)
 - Optional: [vcpkg](https://vcpkg.io) (`VCPKG_ROOT`) for dependencies
 

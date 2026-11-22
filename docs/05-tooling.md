@@ -17,3 +17,10 @@
 ## The gate
 
 `./scripts/prepare.sh` formats the sources, builds the `ci` preset with warnings as errors, runs the tests under sanitizers, then clang-tidy and cppcheck. `--check` formats nothing and is what CI runs. clang-tidy and cppcheck are skipped locally when not installed (`REQUIRE_TOOLS=1` makes that a failure); on macOS install LLVM with `brew install llvm` and the script finds it.
+
+## Compilers
+
+- The code needs `std::expected` and `std::format` (GCC 13+, Clang with libc++ 17+, Apple clang). It avoids `std::print`, which needs GCC 14.
+- CI has two jobs: the full gate, and a plain GCC build and test. On Linux the gate builds with **Clang and libc++** (`CC=clang CXX=clang++ CXXFLAGS=-stdlib=libc++`) because clang-tidy cannot parse libstdc++'s `<expected>` unless Clang is very recent. On macOS the gate uses Apple clang.
+- To run the full gate on Linux locally, set the same three variables before `./scripts/prepare.sh`.
+

@@ -12,6 +12,9 @@ permissions:
   contents: read
 
 jobs:
+  # The full gate: format, warnings-as-errors build, sanitizer tests, clang-tidy, cppcheck.
+  # clang-tidy cannot parse libstdc++'s <expected> (it needs a newer Clang than Ubuntu ships),
+  # so on Linux the gate builds with Clang and libc++. macOS uses Apple clang.
   quality:
     name: Quality gate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -27,7 +30,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ninja-build clang clang-format clang-tidy cppcheck
+          sudo apt-get install -y ninja-build clang clang-format clang-tidy cppcheck libc++-dev libc++abi-dev
 
       - name: Install tools (macOS)
         if: runner.os == 'macOS'
@@ -36,5 +39,25 @@ jobs:
       - name: Run the gate
         env:
           CI: "true"
+          CC: ${{ runner.os == 'Linux' && 'clang' || '' }}
+          CXX: ${{ runner.os == 'Linux' && 'clang++' || '' }}
+          CXXFLAGS: ${{ runner.os == 'Linux' && '-stdlib=libc++' || '' }}
         shell: bash
         run: ./scripts/prepare.sh --check
+
+  # Proves the project builds and passes its tests with GCC (Ubuntu's default compiler).
+  gcc:
+    name: Build and test (GCC)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Configure, build and test
+        run: |
+          g++ --version
+          cmake --preset ci
+          cmake --build --preset ci
+          ctest --preset ci
